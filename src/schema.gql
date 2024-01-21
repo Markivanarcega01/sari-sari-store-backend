@@ -1,0 +1,91 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Order {
+  order_id: Int!
+  buyerId: User!
+  itemId: Item!
+  order_quantity: Int!
+  status: String!
+  total_price: Int!
+}
+
+type User {
+  user_id: Int!
+  username: String!
+  name: String!
+  password: String!
+  position: String!
+  orders: [Order!]!
+}
+
+type Item {
+  item_id: Int!
+  name: String!
+  description: String!
+  price: Float!
+  quantity: Int!
+}
+
+type Query {
+  getAllOrders: [Order!]!
+  getOrdersByUserId(userId: Int!): [Order!]!
+  getAllUsers: [User!]!
+  getUserById(userId: Int!): User!
+  loginUser(username: String!, password: String!): User!
+  getAllItems: [Item!]!
+}
+
+type Mutation {
+  createOrder(orderInput: OrderInput!): Order!
+  updateOrder(orderId: Int!, updateInput: UpdateOrderInput!): Order!
+  updateOrderStatus(orderId: Int!, orderStatus: String!): Order!
+  deleteOrder(orderId: Int!): Order!
+  createUser(userInput: UserInput!): User!
+  updateUser(userId: Int!, updateInput: UpdateUserInput!): User!
+  deleteUser(userId: Float!): User!
+  createItem(itemInput: ItemInput!): Item!
+  updateItem(itemId: Int!, updateItemInput: UpdateItemInput!): Item!
+  deleteItem(itemId: Int!): Item!
+}
+
+input OrderInput {
+  buyerId: Int!
+  itemId: Int!
+  order_quantity: Int!
+}
+
+input UpdateOrderInput {
+  buyerId: Int!
+  itemId: Int!
+  order_quantity: Int!
+}
+
+input UserInput {
+  username: String!
+  name: String
+  password: String!
+  position: String
+}
+
+input UpdateUserInput {
+  username: String
+  name: String
+  password: String
+  position: String
+}
+
+input ItemInput {
+  name: String!
+  description: String!
+  price: Float!
+  quantity: Int!
+}
+
+input UpdateItemInput {
+  name: String
+  description: String
+  price: Float
+  quantity: Int
+}
